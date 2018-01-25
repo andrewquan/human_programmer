@@ -90,43 +90,36 @@
   </div>
 </header>
 
-  <p>impostor_syndrome</p>
+  <h3 id="the-super-method">The <code class="highlighter-rouge">super</code> Method</h3>
 
-<ul>
-  
-    <li>
-      <a href="/fitting-in">Fitting In</a>
-    </li>
-  
-    <li>
-      <a href="/fitting-in-part-2">Fitting In (Part 2)</a>
-    </li>
-  
-    <li>
-      <a href="/shortcuts">Shortcuts</a>
-    </li>
-  
-    <li>
-      <a href="/resources-and-books">Resources & Books</a>
-    </li>
-  
-    <li>
-      <a href="/the-journey">The Journey</a>
-    </li>
-  
-    <li>
-      <a href="/having-courage">Having Courage</a>
-    </li>
-  
-    <li>
-      <a href="/generalist-vs-specialist">Generalist vs. Specialist</a>
-    </li>
-  
-    <li>
-      <a href="/impostor-syndrome-an-introduction">Impostor Syndrome - An Introduction</a>
-    </li>
-  
-</ul>
+<p>The <code class="highlighter-rouge">super</code> method is <em>super</em> simple and helpful. It calls a parent method of the same name and use the same argument(s) provided to the child method.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo
+  def baz(str)
+    p str + ' from the parent class'
+  end
+end
+
+class Bar &lt; Foo
+  def baz(str)
+    super
+    p str + ' from the child class'
+  end
+end
+
+Bar.new.baz('Hello')
+"Hello from the parent class"
+"Hello from the child class"
+=&gt; "Hello from the child class"
+# need to figure out what the return value is in different scenarios
+</code></pre></div></div>
+
+<p>If there is no method of the same name in the parent class, you’ll get a NoMethodError</p>
+
+<p>You can stack them deep so <code class="highlighter-rouge">super</code> can also be used in a grandchild class</p>
+
+<p>If you use <code class="highlighter-rouge">super()</code> instead, it won’t pass any arguments to the parent class. You can pass as many arguments as needed into <code class="highlighter-rouge">super()</code> so that it works with the parent method. Syntax is important here because Rails will throw an exception if the parent method gets the wrong number of arguments.</p>
+
 
   <!-- jQuery -->
 <script src="js/jquery.js"></script>
