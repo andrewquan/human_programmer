@@ -4,7 +4,6 @@ title: Shortcuts
 permalink: shortcuts
 ---
 
-# Impostor Syndrome Blog
 ### Shortcuts
 
 My route towards becoming a web developer is unconventional to say the least, but I think it's becoming more commonplace with the abundance of online tutorials, Stack Overflow, and reputable (and some not so reputable) coding bootcamps.

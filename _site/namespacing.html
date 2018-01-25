@@ -80,7 +80,7 @@
       <hr class="my-4">
       <p class="lead">A programming blog written by a human, for other humans</p>
     </div>
-    <nav class="nav">
+    <nav class="navbar">
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href="/about">About</a>
       <a class="nav-link" href="/impostor_syndrome">Impostor Syndrome</a>
@@ -90,6 +90,7 @@
   </div>
 </header>
 
+  <div class="blog-post">
   <h3 id="namespacing">Namespacing</h3>
 
 <p>During the first couple of weeks as a professional Rails developer, I noticed something drastically different about the way code was being organized. It occurred to me that the applications I was working on while learning Rails were simplistic and small, thus no real need to refactor. In the real-world there can be hundreds of models where grouping all of them into a single <code class="highlighter-rouge">app/models</code> directory would make it almost impossible to understand. This was also conceptually disruptive in that models that are core to your application were placed alongside low-level ones.</p>
@@ -97,56 +98,24 @@
 <p>This is where the simple act of namespacing can go a very long way to making the codebase much more digestible. I also found several positive side-effects (there is a trickle-down effect).</p>
 
 <h2 id="models">Models</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Book &lt; ActiveRecord::Base
-  has_many :chapters
-end
 
-class Chapter &lt; ActiveRecord::Base
-  belongs_to :book
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:chapters</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">class</span> <span class="nc">Chapter</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">belongs_to</span> <span class="ss">:book</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
 <p><code class="highlighter-rouge">Book</code>s and <code class="highlighter-rouge">Chapter</code>s have an obvious relation so it makes sense to group them into a module. In this case we’ll create a <code class="highlighter-rouge">Series</code> module.</p>
 
 <p>First, create <code class="highlighter-rouge">app/models/story.rb</code> with the following:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Story
-  def self.table_name_prefix
-    'story_'
-  end
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Story</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">table_name_prefix</span><br data-jekyll-commonmark-ghpages="" />    <span class="s1">'story_'</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <p>This will add the proper prefix to the classes within the module.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Story
-  class Book &lt; ActiveRecord::Base
-    has_many :chapters
-  end
-end
-
-module Story
-  class Chapter &lt; ActiveRecord::Base
-    belongs_to :book
-  end
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Story</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">has_many</span> <span class="ss">:chapters</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">module</span> <span class="nn">Story</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">class</span> <span class="nc">Chapter</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">belongs_to</span> <span class="ss">:book</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <p>These will be placed in <code class="highlighter-rouge">app/models/story/book.rb</code> and <code class="highlighter-rouge">app/models/story/chapter.rb</code>, respectively.</p>
 
 <p>It’s important to note that when referencing other classes within the same module, you use just the class name without the <code class="highlighter-rouge">Story::</code> namespacing. However, if you’re to reference it outside of the module, you need to include the namespace.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ActiveRecord::Base
-  # incorrect way
-  # NameError: uninitialized constant User::StoryBooks
-  has_many :story_books
-
-  # correct way
-  has_many :story_books, classname: 'Story::Books'
-
-  # this is also correct
-  has_many :books, classname: 'Story::Books'
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># incorrect way</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># NameError: uninitialized constant User::StoryBooks</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:story_books</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># correct way</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:story_books</span><span class="p">,</span> <span class="ss">classname: </span><span class="s1">'Story::Books'</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># this is also correct</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:books</span><span class="p">,</span> <span class="ss">classname: </span><span class="s1">'Story::Books'</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <h2 id="migrations">Migrations</h2>
 <p>You’ll need to prefix your database tables with an underscored name in order for Rails to recognize the relation.</p>
@@ -154,44 +123,32 @@ end
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails generate migration create_story_books
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class CreateStoryBooks &lt; ActiveRecord::Migration
-  create_table :story_books
-    # other code goes here
-  end
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateStoryBooks</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">create_table</span> <span class="ss">:story_books</span><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># other code goes here</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <h2 id="routes">Routes</h2>
 <p>You’ll also need to wrap your routes within the proper namespace:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>namespace :story do
-  resources :books
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">namespace</span> <span class="ss">:story</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">resources</span> <span class="ss">:books</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <p>The URL will look like <code class="highlighter-rouge">/story/books/1</code> and path helpers will look like <code class="highlighter-rouge">new_story_book_path</code></p>
 
 <h2 id="controllers">Controllers</h2>
 <p>Controller namespacing is pretty simple as well:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Story
-  class BooksController &lt; ApplicationController
-    # other code goes here
-  end
-end
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Story</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">class</span> <span class="nc">BooksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># other code goes here</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
 
 <h2 id="views">Views</h2>
 <p>When rendering partials, it seems the best way is to explicitly point to where the partial is.</p>
 
-<p><code class="highlighter-rouge">&lt;%= render 'story/books/bookmark', collection: @bookmarks %&gt;</code></p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="sx">%= render 'story/books/bookmark', collection: @bookmarks %&gt;</span></code></pre></figure>
 
 <h2 id="organizing-everywhere">Organizing Everywhere</h2>
 <p>When you start namespacing beginning from the models, it starts to make sense to organize your code in the same where everywhere else.</p>
 
-<p><code class="highlighter-rouge">#show examples here</code></p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#show examples here</span></code></pre></figure>
 
 
+</div>
 
   <!-- jQuery -->
 <script src="js/jquery.js"></script>

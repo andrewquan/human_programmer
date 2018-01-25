@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Fitting In
+title: "Fitting In"
 permalink: fitting-in
 ---
 
-# Impostor Syndrome Blog
 ### Fitting In
+#### {{ page.date }}
 
 Pompadour hairdo. Fitted coat and shirt. Gym rat. Volleyball enthusiast. Closet *otaku*.
 

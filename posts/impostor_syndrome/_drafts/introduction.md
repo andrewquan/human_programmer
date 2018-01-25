@@ -4,8 +4,8 @@ title: Impostor Syndrome - An Introduction
 permalink: impostor-syndrome-an-introduction
 ---
 
-# Impostor Syndrome Blog
 ### Impostor Syndrome - An Introduction
+#### {{ page.date }}
 
 As 2017 winds down, I'm again imagining a better version of myself. The concept of constant self-improvement is something I truly believe in, yet the concept in and of itself is something I find difficult to improve on. I understand that to pursue something really worthwhile, it's required that we struggle. Before I begin working towards my future goals, I find that it's important to not just contemplate the past, but to look at yourself as you are *right now* at this moment. It's not about regrets because what's done is done. Instead, I find that it's about making a choice, and that choice being, as so succinctly worded in *Shawshank Redemption*,
 
