@@ -3,5 +3,10 @@ layout: default
 ---
 
 <div class="blog-post">
+  <h3>{{ page.title }}</h3>
+  <h4>{{ page.date }}</h4>
+  {% for tag in page.tags %}
+    <a href="#" class="badge badge-pill">{{ tag }}</a>
+  {% endfor %}
   {{ content }}
 </div>

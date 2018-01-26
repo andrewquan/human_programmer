@@ -5,9 +5,6 @@ permalink: fitting-in
 tags: test testing
 ---
 
-### Fitting In
-#### {{ page.date }}
-
 Pompadour hairdo. Fitted coat and shirt. Gym rat. Volleyball enthusiast. Closet *otaku*.
 
 I was always taught that we all come in different shapes and sizes, and I understand the traditional idea of a computer programmer has changed quite a bit in [recent times](https://imgur.com/fDAoMw8), but I still occasionally find myself out of place with other developers.
