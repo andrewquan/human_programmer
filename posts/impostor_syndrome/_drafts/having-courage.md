@@ -2,6 +2,7 @@
 layout: post
 title: Having Courage
 permalink: having-courage
+tags:
 ---
 
-### Having Courage
+Content goes here

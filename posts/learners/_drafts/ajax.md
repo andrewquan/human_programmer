@@ -2,9 +2,8 @@
 layout: post
 title: Ajax
 permalink: ajax
+tags:
 ---
-
-### Ajax
 
 Ajax isn't a technology on its own, but rather a collection of technologies that work together to help create user friendly web interfaces. What this means is that JavaScript allows a web page to update just parts of a page instead of getting the entire page from the server.
 

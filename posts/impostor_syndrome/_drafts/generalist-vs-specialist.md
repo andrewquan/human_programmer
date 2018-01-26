@@ -2,6 +2,7 @@
 layout: post
 title: Generalist vs. Specialist
 permalink: generalist-vs-specialist
+tags:
 ---
 
-### Generalist vs. Specialist
+Content goes here

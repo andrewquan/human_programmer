@@ -2,9 +2,8 @@
 layout: post
 title: Namespacing
 permalink: namespacing
+tags:
 ---
-
-### Namespacing
 
 During the first couple of weeks as a professional Rails developer, I noticed something drastically different about the way code was being organized. It occurred to me that the applications I was working on while learning Rails were simplistic and small, thus no real need to refactor. In the real-world there can be hundreds of models where grouping all of them into a single `app/models` directory would make it almost impossible to understand. This was also conceptually disruptive in that models that are core to your application were placed alongside low-level ones.
 

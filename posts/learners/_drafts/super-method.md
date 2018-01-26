@@ -2,9 +2,8 @@
 layout: post
 title: The `super` Method
 permalink: super-method
+tags:
 ---
-
-### The `super` Method
 
 The `super` method is *super* simple and helpful. It calls a parent method of the same name and use the same argument(s) provided to the child method.
 
