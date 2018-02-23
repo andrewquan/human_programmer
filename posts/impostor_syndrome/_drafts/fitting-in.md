@@ -5,9 +5,11 @@ permalink: fitting-in
 tags: test testing
 ---
 
-Pompadour hairdo. Fitted coat and shirt. Gym rat. Volleyball enthusiast. Closet *otaku*.
+Pompadour hairdo. Fitted shirt, pants, and coat. Gym rat. Volleyball enthusiast. Closet *otaku*.
 
-I was always taught that we all come in different shapes and sizes, and I understand the traditional idea of a computer programmer has changed quite a bit in [recent times](https://imgur.com/fDAoMw8), but I still occasionally find myself out of place with other developers.
+I was always taught that we all come in different shapes and sizes, and I understand the traditional idea of a computer programmer has changed quite a bit in recent times, but I still occasionally find myself out of place with other developers.
+
+(https://imgur.com/fDAoMw8)
 
 I was recently at a coding meetup here in Tokyo and forced my way into a conversation about how there's a new [JavaScript framework]() seemingly every week. It was fun talking about the pros and cons of the popular frameworks, but I kept finding myself distracted by something completely unrelated. One of the programmers there had a really nice (and expensive) coat on, but he had left the brand tag on the sleeve. It was so taboo but I couldn't get myself to tell him so. Then I started noticing how others had their hair unkempt, or how their shirts were one or two sizes too large, or how much bigger I was physique-wise than the others (and I'm not a big dude). The list goes on.
 
